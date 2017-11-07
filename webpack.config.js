@@ -84,7 +84,8 @@ const postcssLoader = {
 
 module.exports = {
   entry: {
-    app: entryPoints("./src/index.js"),
+    //app: entryPoints("./src/index.js"),
+    app: entryPoints("./src/scratch.js"),
     vendor: ["preact", "preact-router"]
   },
   output: {
