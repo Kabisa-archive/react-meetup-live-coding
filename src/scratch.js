@@ -1,5 +1,5 @@
 import "babel-polyfill";
-import { h, render } from "preact";
+import { h, render, Component } from "preact";
 
 const TodoItem = ({ name }) => <li>{name}</li>;
 
@@ -16,12 +16,38 @@ const todoItems = [
   { name: "Todo 3", done: false }
 ];
 
+class TodoListContainer extends Component {
+  constructor() {
+    super();
+    this.state = { items: [] };
+  }
+
+  componentWillMount() {
+    this.setState({ items: this.props.items });
+  }
+
+  render(props, { items }) {
+    console.log("executing render");
+    const addTodo = () => {
+      console.log("adding todo");
+    };
+    return (
+      <div>
+        <TodoList items={items} />
+        <button type="button" onClick={addTodo}>
+          Add new todo
+        </button>
+      </div>
+    );
+  }
+}
+
 render(
   <section>
     <h1>Hello there</h1>
     <p>This is a html page</p>
     <p>With some paragraphs</p>
-    <TodoList items={todoItems} />
+    <TodoListContainer items={todoItems} />
   </section>,
   root,
   root.firstChildElement
