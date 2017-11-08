@@ -19,21 +19,29 @@ const todoItems = [
 class TodoListContainer extends Component {
   constructor() {
     super();
-    this.state = { items: [] };
+    this.state = { items: [], newTodo: "" };
   }
 
   componentWillMount() {
     this.setState({ items: this.props.items });
   }
 
-  render(props, { items }) {
-    console.log("executing render");
+  render(props, { items, newTodo }) {
     const addTodo = () => {
-      console.log("adding todo");
+      this.setState({
+        items: this.state.items.concat({ name: this.state.newTodo }),
+        newTodo: ""
+      });
     };
+
+    const updateNewTodo = e => {
+      this.setState({ newTodo: e.target.value });
+    };
+
     return (
       <div>
         <TodoList items={items} />
+        <input type="text" value={newTodo} onInput={updateNewTodo} />
         <button type="button" onClick={addTodo}>
           Add new todo
         </button>
