@@ -15,5 +15,8 @@ module.exports = {
       }
     ]
   ],
-  plugins: [["transform-react-jsx", { pragma: "h" }]]
+  plugins: [
+    ["transform-react-jsx", { pragma: "h" }],
+    "transform-class-properties"
+  ]
 };
